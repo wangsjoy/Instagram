@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="69.642857142857139"/>
+            <point key="canvasLocation" x="-104" y="70"/>
         </scene>
         <!--Home Feed-->
         <scene sceneID="Rkf-me-7qZ">
@@ -112,14 +112,31 @@
                     <view key="view" contentMode="scaleToFill" id="fCn-rN-2di">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUE-lu-zQS">
+                                <rect key="frame" x="20" y="81" width="374" height="216"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write a caption..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fpo-Qt-etM">
+                                <rect key="frame" x="20" y="305" width="374" height="132"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Q9u-4r-ZvR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WzB-wG-zCC"/>
+                    <navigationItem key="navigationItem" id="WzB-wG-zCC">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="jKc-pt-Yd5"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="Pyc-39-kui"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5B-Pz-8x9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3378" y="70"/>
+            <point key="canvasLocation" x="3376.811594202899" y="69.642857142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BtK-oJ-oxv">
@@ -133,7 +150,6 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="uef-XU-Gaw" kind="relationship" relationship="rootViewController" id="9EG-EO-rNr"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="Of2-wd-hEa"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohG-Ft-Rgs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

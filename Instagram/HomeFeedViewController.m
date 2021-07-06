@@ -31,14 +31,13 @@
         } else {
 //            [self dismissViewControllerAnimated:YES completion:nil];
 //            [self performSegueWithIdentifier:@"logoutSegue" sender:self];
-            [self.navigationController performSegueWithIdentifier:@"logoutSegue" sender:self];
             NSLog(@"Successfully logged out user!");//dismiss last view controller
-//            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            UIStoryboard *storyboard = [self storyboard];
-//            LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            
+            SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
 //            UIWindow *window = [UIApplication sharedApplication].delegate.window;
-//            window.rootViewController = loginViewController;
+            myDelegate.window.rootViewController = loginViewController;
             
         }
         // PFUser.current() will now be nil
