@@ -275,6 +275,12 @@
                                     <constraint firstAttribute="height" constant="258" id="ly6-gx-Vek"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CreatedAt Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sw7-g7-L3r">
+                                <rect key="frame" x="30" y="446.5" width="121.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sd8-og-hqu">
                                 <rect key="frame" x="30" y="396" width="354" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -285,17 +291,21 @@
                         <viewLayoutGuide key="safeArea" id="MMq-cz-fdK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="MMq-cz-fdK" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sw7-g7-L3r" secondAttribute="bottom" constant="30" id="Fo1-pp-5nu"/>
                             <constraint firstItem="Sd8-og-hqu" firstAttribute="top" secondItem="7QU-x3-0P2" secondAttribute="bottom" constant="30" id="chr-Jj-13h"/>
                             <constraint firstItem="7QU-x3-0P2" firstAttribute="top" secondItem="MMq-cz-fdK" secondAttribute="top" constant="20" id="eh0-v1-YDE"/>
                             <constraint firstItem="MMq-cz-fdK" firstAttribute="trailing" secondItem="Sd8-og-hqu" secondAttribute="trailing" constant="30" id="fDs-WU-sYK"/>
                             <constraint firstItem="Sd8-og-hqu" firstAttribute="leading" secondItem="MMq-cz-fdK" secondAttribute="leading" constant="30" id="hZd-oX-hHR"/>
+                            <constraint firstItem="sw7-g7-L3r" firstAttribute="leading" secondItem="Sd8-og-hqu" secondAttribute="leading" id="mQJ-4a-bKj"/>
                             <constraint firstItem="7QU-x3-0P2" firstAttribute="centerX" secondItem="MMq-cz-fdK" secondAttribute="centerX" id="qIs-Wp-7Ih"/>
+                            <constraint firstItem="sw7-g7-L3r" firstAttribute="top" secondItem="Sd8-og-hqu" secondAttribute="bottom" constant="30" id="ykk-rB-EhI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vaN-cT-680"/>
                     <connections>
                         <outlet property="captionLabel" destination="Sd8-og-hqu" id="R3C-AW-RlA"/>
                         <outlet property="photoImageView" destination="7QU-x3-0P2" id="sFS-yt-QLl"/>
+                        <outlet property="timeLabel" destination="sw7-g7-L3r" id="8oZ-yd-49I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abG-pR-t4c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

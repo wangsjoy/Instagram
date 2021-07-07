@@ -35,32 +35,63 @@
     
 }
 
+
 //The event handling method for when photoView element is pressed
 - (void)onPhotoTap:(UITapGestureRecognizer *)recognizer
 {
     NSLog(@"Photo Tapped");
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose Photo"
+                                                                               message:@"Choose photo from camera roll or take photo"
+                                                                        preferredStyle:(UIAlertControllerStyleAlert)];
+    // create a take photo action
+    UIAlertAction *takePhotoAction = [UIAlertAction actionWithTitle:@"Take Photo"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+                                                             // handle cancel response here. Doing nothing will dismiss the view.
+        //take photo if camera available, otherwise use photo library
+        UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+        imagePickerVC.delegate = self;
+        imagePickerVC.allowsEditing = YES;
+        
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+        else {
+            NSLog(@"Camera 🚫 available so we will use photo library instead");
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        [self presentViewController:imagePickerVC animated:YES completion:nil];
+        
+    }];
+    // add the cancel action to the alertController
+    [alert addAction:takePhotoAction];
 
-    // The Xcode simulator does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
+    // create a choose photo from photo library action
+    UIAlertAction *photoLibraryAction = [UIAlertAction actionWithTitle:@"Photo Library"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                             // handle response here.
+        //choose photo from photo library
+        UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+        imagePickerVC.delegate = self;
+        imagePickerVC.allowsEditing = YES;
+        
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
+        
+        [self presentViewController:imagePickerVC animated:YES completion:nil];
+                                                     }];
+    // add the OK action to the alert controller
+    [alert addAction:photoLibraryAction];
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+    }];
 }
 
 - (IBAction)onBackTap:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"Back to Home Timeline");
 }
-
-
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];

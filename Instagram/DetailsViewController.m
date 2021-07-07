@@ -7,10 +7,12 @@
 
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "DateTools.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end
 
@@ -23,6 +25,17 @@
     //set caption
     self.captionLabel.text = self.post.caption;
     
+    //date created
+    NSDate *createdAt = self.post.createdAt;
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+//    dateFormatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+//    dd/MM/yyyy
+    dateFormatter.dateFormat = @"dd/MM/yyyy";
+    NSString *dateString = [dateFormatter stringFromDate:createdAt];
+//    self.timeLabel.text = dateString;
+    
+    self.timeLabel.text = createdAt.timeAgoSinceNow;
+
     //set image
     NSString *URLString = self.post.image.url;
     NSURL *url = [NSURL URLWithString:URLString];
