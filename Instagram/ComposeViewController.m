@@ -8,6 +8,9 @@
 #import "ComposeViewController.h"
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "SceneDelegate.h"
+#import "HomeFeedViewController.h"
+
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
@@ -52,6 +55,13 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
+- (IBAction)onBackTap:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Back to Home Timeline");
+}
+
+
+
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
@@ -95,7 +105,13 @@
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else {
                 NSLog(@"Successfully posted");
-                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                //note: cannot just dismiss View Controller since this would not allow for the user post to load into home timeline
+                SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                HomeFeedViewController *homeFeedViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewController"];
+                myDelegate.window.rootViewController = homeFeedViewController;
+                NSLog(@"Successfully returned to home feed!");//dismiss last view controller
             }
         }];
         

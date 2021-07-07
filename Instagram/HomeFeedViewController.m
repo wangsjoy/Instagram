@@ -44,6 +44,7 @@
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
 //    [query whereKey:@"likesCount" greaterThan:@100];
+    [query orderByDescending:@"createdAt"];
     query.limit = 20;
 
     // fetch data asynchronously
