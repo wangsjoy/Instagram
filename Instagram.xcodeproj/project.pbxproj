@@ -20,6 +20,7 @@
 		12B0581A2694E91500747297 /* InstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B058192694E91500747297 /* InstagramTests.m */; };
 		12B058252694E91500747297 /* InstagramUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B058242694E91500747297 /* InstagramUITests.m */; };
 		12CB44B5269524730086F577 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CB44B4269524730086F577 /* Post.m */; };
+		12EBE0B526963C68008058EA /* GramCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EBE0B426963C68008058EA /* GramCell.m */; };
 		1BCFA8A8DBAE2E047C8620F2 /* Pods_Instagram_InstagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DAFB30C31B0A03E4CA341D1 /* Pods_Instagram_InstagramUITests.framework */; };
 		E12CE221CE85C78A4EE7E1B3 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A5B7031D4E79A12C3D82A6C /* Pods_Instagram.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,8 @@
 		12B058262694E91500747297 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12CB44B3269524730086F577 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		12CB44B4269524730086F577 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		12EBE0B326963C68008058EA /* GramCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GramCell.h; sourceTree = "<group>"; };
+		12EBE0B426963C68008058EA /* GramCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GramCell.m; sourceTree = "<group>"; };
 		2A5B7031D4E79A12C3D82A6C /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		373AE123A458F9FBDFC2FC99 /* Pods-Instagram-InstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.debug.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		56C598BC32546A92E5F0BE24 /* Pods-Instagram-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 				12B058002694E91400747297 /* SceneDelegate.h */,
 				12B058012694E91400747297 /* SceneDelegate.m */,
 				12B058062694E91400747297 /* Main.storyboard */,
+				12EBE0B326963C68008058EA /* GramCell.h */,
+				12EBE0B426963C68008058EA /* GramCell.m */,
 				12CB44B3269524730086F577 /* Post.h */,
 				12CB44B4269524730086F577 /* Post.m */,
 				12A69F342695013300D69392 /* ComposeViewController.h */,
@@ -433,6 +438,7 @@
 				12B057FF2694E91400747297 /* AppDelegate.m in Sources */,
 				12B058102694E91500747297 /* main.m in Sources */,
 				12A69F362695013300D69392 /* ComposeViewController.m in Sources */,
+				12EBE0B526963C68008058EA /* GramCell.m in Sources */,
 				12B058022694E91400747297 /* SceneDelegate.m in Sources */,
 				12A69F302694EFCD00D69392 /* LoginViewController.m in Sources */,
 				12CB44B5269524730086F577 /* Post.m in Sources */,

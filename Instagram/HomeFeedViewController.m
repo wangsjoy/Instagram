@@ -10,8 +10,13 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "SceneDelegate.h"
+#import "GramCell.h"
+#import "Post.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface HomeFeedViewController ()
+@interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *arrayOfGram;
 
 @end
 
@@ -20,7 +25,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self fetchGram];
 }
+
+- (void)fetchGram{
+    //fetch 20 instagram posts
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+//    [query whereKey:@"likesCount" greaterThan:@100];
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            // do something with the array of object returned by the call
+            NSLog(@"20 posts retrieved");
+            for (Post *single_post in posts){
+                NSLog(@"%@", single_post);
+            }
+            NSLog(@"%@", posts);
+            NSLog(@"Found posts");
+            self.arrayOfGram = posts;
+            [self.tableView reloadData];
+
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
 - (IBAction)didLogout:(id)sender {
 
     //clear the current user
@@ -29,19 +65,12 @@
             NSLog(@"Errror:%@", error.localizedDescription);
             
         } else {
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//            [self performSegueWithIdentifier:@"logoutSegue" sender:self];
-            NSLog(@"Successfully logged out user!");//dismiss last view controller
-            
             SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//            UIWindow *window = [UIApplication sharedApplication].delegate.window;
             myDelegate.window.rootViewController = loginViewController;
-            
+            NSLog(@"Successfully logged out user!");//dismiss last view controller
         }
-        // PFUser.current() will now be nil
-                
         
     }];
 
@@ -49,7 +78,6 @@
 
 - (IBAction)didTapCompose:(id)sender {
     [self performSegueWithIdentifier:@"composeSegue" sender:nil];
-
 }
 
 /*
@@ -61,5 +89,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    GramCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GramCell"];
+    Post *post = self.arrayOfGram[indexPath.row];
+    NSLog(@"Post:");
+    NSLog(@"%@", post.caption);
+    cell.captionLabel.text = post.caption;
+    
+    NSString *URLString = post.image.url;
+    NSURL *url = [NSURL URLWithString:URLString];
+    cell.photoImageView.image = nil;
+    [cell.photoImageView setImageWithURL:url];
+
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 20;
+}
 
 @end
