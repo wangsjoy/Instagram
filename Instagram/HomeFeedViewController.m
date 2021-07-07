@@ -13,10 +13,12 @@
 #import "GramCell.h"
 #import "Post.h"
 #import "UIImageView+AFNetworking.h"
+#import "DetailsViewController.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfGram;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -29,6 +31,12 @@
     self.tableView.dataSource = self;
     
     [self fetchGram];
+    
+    //refresh controls
+    self.refreshControl = [[UIRefreshControl alloc] init]; //instantiate refreshControl
+    [self.refreshControl addTarget:self action:@selector(fetchGram) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0]; //so that the refresh icon doesn't hover over any cells
+    
 }
 
 - (void)fetchGram{
@@ -50,10 +58,12 @@
             NSLog(@"Found posts");
             self.arrayOfGram = posts;
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing]; //end refreshing
 
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -80,15 +90,24 @@
     [self performSegueWithIdentifier:@"composeSegue" sender:nil];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"DetailsSegue"]){
+        NSLog(@"Entering Post Details");
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        UITableViewCell *tappedCell = sender; //sender is just table view cell that was tapped on
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell]; //grabs index path
+        Post *post = self.arrayOfGram[indexPath.row]; //right post associated with right row
+        detailsViewController.post = post; //pass post to detailsViewController
+    }
+    
 }
-*/
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
