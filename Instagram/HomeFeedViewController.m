@@ -15,10 +15,11 @@
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
 
-@interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfGram;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
@@ -29,7 +30,7 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+        
     [self fetchGram];
     
     //refresh controls
@@ -127,7 +128,55 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+//    return 20;
+    return self.arrayOfGram.count;
+}
+
+-(void)loadMoreData{
+    
+    //fetch 20 instagram posts
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+//    [query whereKey:@"likesCount" greaterThan:@100];
+    [query orderByDescending:@"createdAt"];
+    query.limit = self.arrayOfGram.count + 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            // do something with the array of object returned by the call
+            NSLog(@"40 posts retrieved");
+//            for (Post *single_post in posts){
+//                NSLog(@"%@", single_post);
+//            }
+//            NSLog(@"%@", posts);
+            NSLog(@"Found posts");
+            self.arrayOfGram = posts;
+            [self.tableView reloadData];
+//            [self.refreshControl endRefreshing]; //end refreshing
+
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+//        [self.refreshControl endRefreshing];
+    }];
+//    [task resume];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(!self.isMoreDataLoading){
+//        NSLog(@"Entering More Data Loading");
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            [self loadMoreData];
+            NSLog(@"Actually loaded more data");
+        }
+    }
 }
 
 @end
