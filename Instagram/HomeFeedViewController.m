@@ -14,6 +14,7 @@
 #import "Post.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
+#import "DateTools.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -119,25 +120,39 @@
     NSLog(@"%@", post.caption);
     cell.captionLabel.text = post.caption;
     
+    //username label
+    PFUser *user = [PFUser currentUser];
+    NSString *username = user.username;
+    NSLog(@"Author");
+    NSLog(@"%@", username);
+    cell.usernameLabel.text = username;
+    
+    //timestamp label
+    NSDate *createdAt = post.createdAt;
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"dd/MM/yyyy";
+    NSString *dateString = [dateFormatter stringFromDate:createdAt];
+//    self.timeLabel.text = dateString;
+    cell.timeLabel.text = createdAt.timeAgoSinceNow;
+    
+    
+    
+    
     NSString *URLString = post.image.url;
     NSURL *url = [NSURL URLWithString:URLString];
     cell.photoImageView.image = nil;
     [cell.photoImageView setImageWithURL:url];
-
+    
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return 20;
     return self.arrayOfGram.count;
 }
 
 -(void)loadMoreData{
-    
-    //fetch 20 instagram posts
-    // construct query
+    //fetch 20 more instagram posts
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-//    [query whereKey:@"likesCount" greaterThan:@100];
     [query orderByDescending:@"createdAt"];
     query.limit = self.arrayOfGram.count + 20;
 
@@ -145,22 +160,14 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             // do something with the array of object returned by the call
-            NSLog(@"40 posts retrieved");
-//            for (Post *single_post in posts){
-//                NSLog(@"%@", single_post);
-//            }
-//            NSLog(@"%@", posts);
-            NSLog(@"Found posts");
+            NSLog(@"Posts retrieved");
             self.arrayOfGram = posts;
             [self.tableView reloadData];
-//            [self.refreshControl endRefreshing]; //end refreshing
 
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-//        [self.refreshControl endRefreshing];
     }];
-//    [task resume];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
