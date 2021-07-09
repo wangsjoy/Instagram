@@ -117,6 +117,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12035EBB2697CD6E00C162F0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				12035EB52697BE3600C162F0 /* ProfileViewController.h */,
+				12035EB62697BE3600C162F0 /* ProfileViewController.m */,
+				128CD36026965C84008B094C /* DetailsViewController.h */,
+				128CD36126965C84008B094C /* DetailsViewController.m */,
+				12A69F342695013300D69392 /* ComposeViewController.h */,
+				12A69F352695013300D69392 /* ComposeViewController.m */,
+				12A69F312694F20100D69392 /* HomeFeedViewController.h */,
+				12A69F322694F20100D69392 /* HomeFeedViewController.m */,
+				12A69F2E2694EFCD00D69392 /* LoginViewController.h */,
+				12A69F2F2694EFCD00D69392 /* LoginViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		12035EBC2697CD7E00C162F0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				12CB44B3269524730086F577 /* Post.h */,
+				12CB44B4269524730086F577 /* Post.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		12035EC32697D21600C162F0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				12EBE0B326963C68008058EA /* GramCell.h */,
+				12EBE0B426963C68008058EA /* GramCell.m */,
+				12035EB82697C0D400C162F0 /* ProfileGramCell.h */,
+				12035EB92697C0D400C162F0 /* ProfileGramCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		12B057F12694E91400747297 = {
 			isa = PBXGroup;
 			children = (
@@ -142,27 +179,14 @@
 		12B057FC2694E91400747297 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				12035EBC2697CD7E00C162F0 /* Models */,
+				12035EBB2697CD6E00C162F0 /* ViewControllers */,
+				12035EC32697D21600C162F0 /* Cells */,
 				12B057FD2694E91400747297 /* AppDelegate.h */,
 				12B057FE2694E91400747297 /* AppDelegate.m */,
 				12B058002694E91400747297 /* SceneDelegate.h */,
 				12B058012694E91400747297 /* SceneDelegate.m */,
 				12B058062694E91400747297 /* Main.storyboard */,
-				12035EB52697BE3600C162F0 /* ProfileViewController.h */,
-				12035EB62697BE3600C162F0 /* ProfileViewController.m */,
-				128CD36026965C84008B094C /* DetailsViewController.h */,
-				128CD36126965C84008B094C /* DetailsViewController.m */,
-				12EBE0B326963C68008058EA /* GramCell.h */,
-				12EBE0B426963C68008058EA /* GramCell.m */,
-				12CB44B3269524730086F577 /* Post.h */,
-				12CB44B4269524730086F577 /* Post.m */,
-				12035EB82697C0D400C162F0 /* ProfileGramCell.h */,
-				12035EB92697C0D400C162F0 /* ProfileGramCell.m */,
-				12A69F342695013300D69392 /* ComposeViewController.h */,
-				12A69F352695013300D69392 /* ComposeViewController.m */,
-				12A69F312694F20100D69392 /* HomeFeedViewController.h */,
-				12A69F322694F20100D69392 /* HomeFeedViewController.m */,
-				12A69F2E2694EFCD00D69392 /* LoginViewController.h */,
-				12A69F2F2694EFCD00D69392 /* LoginViewController.m */,
 				12B058092694E91500747297 /* Assets.xcassets */,
 				12B0580B2694E91500747297 /* LaunchScreen.storyboard */,
 				12B0580E2694E91500747297 /* Info.plist */,

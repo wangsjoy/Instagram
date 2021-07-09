@@ -140,6 +140,13 @@
     cell.photoImageView.image = nil;
     [cell.photoImageView setImageWithURL:url];
     
+    //profile picture
+    PFFileObject *profilePicture = user[@"profilePicture"];
+    NSString *profileURLString = profilePicture.url;
+    NSURL *profileURL = [NSURL URLWithString:profileURLString];
+//    cell.profileView.image = nil;
+    [cell.profileView setImageWithURL:profileURL];
+    
     return cell;
 }
 

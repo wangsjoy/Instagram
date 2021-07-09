@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *arrayOfGram;
 @property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) UIImage *image;
 
 @end
 
@@ -174,13 +175,50 @@
     [self.pictureView setImage:editedImage];
     
     //resize photo
-//    CGSize size = CGSizeMake(300, 215);
-//    UIImage *edited = [self resizeImage:editedImage withSize:(size)];
-//    self.image = edited;
+    CGSize size = CGSizeMake(300, 215);
+    UIImage *edited = [self resizeImage:editedImage withSize:(size)];
+    self.image = edited;
+    
+    //post profile picture
+//    PFQuery *query = [PFQuery queryWithClassName:@"User"];
+    PFQuery *query = [PFUser query];
+    PFUser *user = [PFUser currentUser];
+    NSString *userID = user.objectId;
+    NSLog(@"User ID");
+    NSLog(@"%@", userID);
+    // Retrieve the object by id
+    [query getObjectInBackgroundWithId:userID
+                                 block:^(PFObject *user, NSError *error) {
+        // Now let's update it with some new data.
+        if (error){
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            //successfully returned user
+            NSData *imageData = UIImagePNGRepresentation(self.image);
+            PFFileObject *imageFile = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+            user[@"profilePicture"] = imageFile;
+            NSLog(@"Finished updating");
+            [user saveInBackground];
+        }
+    }];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"Finished Taking Photo");
+}
+
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 @end
