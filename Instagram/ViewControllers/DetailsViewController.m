@@ -28,19 +28,16 @@
     //date created
     NSDate *createdAt = self.post.createdAt;
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-//    dateFormatter.dateFormat = @"E MMM d HH:mm:ss Z y";
-//    dd/MM/yyyy
     dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [dateFormatter stringFromDate:createdAt];
-//    self.timeLabel.text = dateString;
-    
     self.timeLabel.text = createdAt.timeAgoSinceNow;
-
+    
     //set image
     NSString *URLString = self.post.image.url;
     NSURL *url = [NSURL URLWithString:URLString];
     self.photoImageView.image = nil;
     [self.photoImageView setImageWithURL:url];
+
 }
 
 /*

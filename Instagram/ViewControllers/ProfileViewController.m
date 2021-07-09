@@ -29,10 +29,19 @@
     self.collectionView.dataSource = self;
     // Do any additional setup after loading the view.
     
+    //display screen name (with @)
     PFUser *user = [PFUser currentUser];
     self.user = user;
-    NSString *username = user.username;
-    self.usernameLabel.text = username;
+    NSString *partialUsername = user.username;
+    NSString *fullUsername = [@"@" stringByAppendingString:partialUsername];
+    self.usernameLabel.text = fullUsername;
+    
+    //display user profile picture
+    PFFileObject *profilePicture = user[@"profilePicture"];
+    NSString *profileURLString = profilePicture.url;
+    NSURL *profileURL = [NSURL URLWithString:profileURLString];
+    self.pictureView.image = nil;
+    [self.pictureView setImageWithURL:profileURL];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*) self.collectionView.collectionViewLayout;
     
@@ -59,7 +68,6 @@
     //fetch 20 instagram posts
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-//    [query whereKey:@"likesCount" greaterThan:@100];
     [query whereKey:@"author" equalTo:self.user];
     [query orderByDescending:@"createdAt"];
     query.limit = 20;
@@ -102,7 +110,6 @@
     //post photo
     NSString *URLString = post.image.url;
     NSURL *url = [NSURL URLWithString:URLString];
-//    cell.photoView.image = nil;
     cell.photoView.image = nil;
     [cell.photoView setImageWithURL:url];
     
@@ -180,7 +187,6 @@
     self.image = edited;
     
     //post profile picture
-//    PFQuery *query = [PFQuery queryWithClassName:@"User"];
     PFQuery *query = [PFUser query];
     PFUser *user = [PFUser currentUser];
     NSString *userID = user.objectId;

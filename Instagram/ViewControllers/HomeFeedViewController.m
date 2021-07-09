@@ -107,6 +107,7 @@
         UITableViewCell *tappedCell = sender; //sender is just table view cell that was tapped on
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell]; //grabs index path
         Post *post = self.arrayOfGram[indexPath.row]; //right post associated with right row
+        PFUser *user = post.author;
         detailsViewController.post = post; //pass post to detailsViewController
     }
     
@@ -120,12 +121,13 @@
     NSLog(@"%@", post.caption);
     cell.captionLabel.text = post.caption;
     
-    //username label
+    //username label (add "@" to screen name)
     PFUser *user = [PFUser currentUser];
-    NSString *username = user.username;
-    NSLog(@"Author");
-    NSLog(@"%@", username);
-    cell.usernameLabel.text = username;
+    NSLog(@"user debugging");
+    NSLog(@"%@", user);
+    NSString *partialUsername = user.username;
+    NSString *fullUsername = [@"@" stringByAppendingString:partialUsername];
+    cell.usernameLabel.text = fullUsername;
     
     //timestamp label
     NSDate *createdAt = post.createdAt;
@@ -144,7 +146,7 @@
     PFFileObject *profilePicture = user[@"profilePicture"];
     NSString *profileURLString = profilePicture.url;
     NSURL *profileURL = [NSURL URLWithString:profileURLString];
-//    cell.profileView.image = nil;
+    cell.profileView.image = nil;
     [cell.profileView setImageWithURL:profileURL];
     
     return cell;

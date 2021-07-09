@@ -24,14 +24,8 @@
     //check cache for past users
     if (PFUser.currentUser) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"InstagramNavigationController"];
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"InstagramTabBarController"];
     }
-//    } else {
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//    }
-    
-//    return YES;
 }
 
 

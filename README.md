@@ -19,11 +19,11 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [ ] Run your app on your phone and use the camera to take the photo
-- [ ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
-- [ ] Show the username and creation time for each post
-- [ ] User can use a Tab Bar to switch between a Home Feed tab (all posts) and a Profile tab (only posts published by the current user)
+- [x] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
+- [x] Show the username and creation time for each post
+- [x] User can use a Tab Bar to switch between a Home Feed tab (all posts) and a Profile tab (only posts published by the current user)
 - User Profiles:
-  - [ ] Allow the logged in user to add a profile photo
+  - [x] Allow the logged in user to add a profile photo
   - [ ] Display the profile photo with each post
   - [ ] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
@@ -47,9 +47,25 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+**(A)** GIF of User login, refresh, viewing the last 20 posts, post details, composing and posting to Instagram, infinite scroll *(optional)*:
+![](https://i.imgur.com/6urnDeH.gif)
 
-GIF created with [Kap](https://getkap.co/).
+**(B)** GIF of persistent user:
+![](https://i.imgur.com/zBYjbRf.gif)
+
+**(C)** GIF of User logout and signup:
+![](https://i.imgur.com/YUVnQfE.gif)
+
+**(D)** GIF of Navigation bar, profile page, uploading photo as profile picture *(optional)*:
+![](https://i.imgur.com/O3SF5HM.gif)
+
+Back-up Links:
+(A) https://i.imgur.com/6urnDeH.gif
+(B) https://i.imgur.com/zBYjbRf.gif
+(C ) https://i.imgur.com/YUVnQfE.gif
+(D) https://i.imgur.com/O3SF5HM.gif
+
+GIF created with [Giphy](giphy.com).
 
 ## Credits
 
