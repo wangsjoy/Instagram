@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		08DC0E587C03CFD94B68813E /* Pods_InstagramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85786644F2758405D98CB5F /* Pods_InstagramTests.framework */; };
+		12035EB72697BE3600C162F0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12035EB62697BE3600C162F0 /* ProfileViewController.m */; };
+		12035EBA2697C0D400C162F0 /* ProfileGramCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12035EB92697C0D400C162F0 /* ProfileGramCell.m */; };
 		128CD36226965C84008B094C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 128CD36126965C84008B094C /* DetailsViewController.m */; };
 		12A69F302694EFCD00D69392 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A69F2F2694EFCD00D69392 /* LoginViewController.m */; };
 		12A69F332694F20100D69392 /* HomeFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A69F322694F20100D69392 /* HomeFeedViewController.m */; };
@@ -44,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12035EB52697BE3600C162F0 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		12035EB62697BE3600C162F0 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		12035EB82697C0D400C162F0 /* ProfileGramCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileGramCell.h; sourceTree = "<group>"; };
+		12035EB92697C0D400C162F0 /* ProfileGramCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileGramCell.m; sourceTree = "<group>"; };
 		128CD36026965C84008B094C /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		128CD36126965C84008B094C /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		12A69F2E2694EFCD00D69392 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -141,12 +147,16 @@
 				12B058002694E91400747297 /* SceneDelegate.h */,
 				12B058012694E91400747297 /* SceneDelegate.m */,
 				12B058062694E91400747297 /* Main.storyboard */,
+				12035EB52697BE3600C162F0 /* ProfileViewController.h */,
+				12035EB62697BE3600C162F0 /* ProfileViewController.m */,
 				128CD36026965C84008B094C /* DetailsViewController.h */,
 				128CD36126965C84008B094C /* DetailsViewController.m */,
 				12EBE0B326963C68008058EA /* GramCell.h */,
 				12EBE0B426963C68008058EA /* GramCell.m */,
 				12CB44B3269524730086F577 /* Post.h */,
 				12CB44B4269524730086F577 /* Post.m */,
+				12035EB82697C0D400C162F0 /* ProfileGramCell.h */,
+				12035EB92697C0D400C162F0 /* ProfileGramCell.m */,
 				12A69F342695013300D69392 /* ComposeViewController.h */,
 				12A69F352695013300D69392 /* ComposeViewController.m */,
 				12A69F312694F20100D69392 /* HomeFeedViewController.h */,
@@ -443,6 +453,8 @@
 				12B057FF2694E91400747297 /* AppDelegate.m in Sources */,
 				12B058102694E91500747297 /* main.m in Sources */,
 				12A69F362695013300D69392 /* ComposeViewController.m in Sources */,
+				12035EB72697BE3600C162F0 /* ProfileViewController.m in Sources */,
+				12035EBA2697C0D400C162F0 /* ProfileGramCell.m in Sources */,
 				12EBE0B526963C68008058EA /* GramCell.m in Sources */,
 				12B058022694E91400747297 /* SceneDelegate.m in Sources */,
 				128CD36226965C84008B094C /* DetailsViewController.m in Sources */,

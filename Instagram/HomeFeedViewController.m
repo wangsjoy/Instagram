@@ -132,12 +132,9 @@
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [dateFormatter stringFromDate:createdAt];
-//    self.timeLabel.text = dateString;
     cell.timeLabel.text = createdAt.timeAgoSinceNow;
     
-    
-    
-    
+    //post photo
     NSString *URLString = post.image.url;
     NSURL *url = [NSURL URLWithString:URLString];
     cell.photoImageView.image = nil;
